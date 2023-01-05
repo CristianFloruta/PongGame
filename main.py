@@ -18,8 +18,8 @@ screen.title("Python Pong Game")
 screen.tracer(0)
 
 # paddle creation and board game set-up
-left_paddle = Paddle(-350, 0)
-right_paddle = Paddle(350, 0)
+left_paddle = Paddle(-370, 0)
+right_paddle = Paddle(370, 0)
 ball = Ball()
 game_net = GameBoard()
 score_left = Scoreboard(-40, 270)
@@ -36,7 +36,7 @@ screen.onkeypress(key="Down", fun=right_paddle.move_down)
 game_on = True
 
 while game_on:
-    sleep(0.1)
+    sleep(0.05)
     screen.update()
     # set up ball movement
     ball.move()
@@ -44,8 +44,20 @@ while game_on:
     if ball.ycor() > 285 or ball.ycor() < -285:
         ball.bounce_y()
     # detect collision with left and right paddle
-    if ball.distance(right_paddle) < 50 and ball.xcor() > 340 or \
-            ball.distance(left_paddle) < 50 and ball.xcor() < -340:
+    if ball.distance(right_paddle) < 50 and ball.xcor() > 320 or \
+            ball.distance(left_paddle) < 50 and ball.xcor() < -320:
         ball.bounce_x()
+    if ball.xcor() > 390:
+        score_left.plus_count()
+        score_left.update()
+        ball.setx(0)
+        ball.sety(0)
+        sleep(0.5)
+    if ball.xcor() < -390:
+        score_right.plus_count()
+        score_right.update()
+        ball.setx(0)
+        ball.sety(0)
+        sleep(0.5)
 
 screen.exitonclick()
