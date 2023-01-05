@@ -47,17 +47,17 @@ while game_on:
     if ball.distance(right_paddle) < 50 and ball.xcor() > 320 or \
             ball.distance(left_paddle) < 50 and ball.xcor() < -320:
         ball.bounce_x()
-    if ball.xcor() > 390:
+    # detect when right paddle missed and update score and reset position
+    if ball.xcor() > 380:
         score_left.plus_count()
         score_left.update()
-        ball.setx(0)
-        ball.sety(0)
+        ball.reset_position()
         sleep(0.5)
-    if ball.xcor() < -390:
+    # detect when left paddle missed and update score and reset position
+    if ball.xcor() < -380:
         score_right.plus_count()
         score_right.update()
-        ball.setx(0)
-        ball.sety(0)
+        ball.reset_position()
         sleep(0.5)
 
 screen.exitonclick()
