@@ -36,7 +36,7 @@ screen.onkeypress(key="Down", fun=right_paddle.move_down)
 game_on = True
 
 while game_on:
-    sleep(0.05)
+    sleep(ball.ball_speed)
     screen.update()
     # set up ball movement
     ball.move()
@@ -52,12 +52,12 @@ while game_on:
         score_left.plus_count()
         score_left.update()
         ball.reset_position()
-        sleep(0.5)
+        ball.increase_speed()
     # detect when left paddle missed and update score and reset position
     if ball.xcor() < -380:
         score_right.plus_count()
         score_right.update()
         ball.reset_position()
-        sleep(0.5)
+        ball.increase_speed()
 
 screen.exitonclick()
