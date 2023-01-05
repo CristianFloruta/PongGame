@@ -14,13 +14,13 @@ class Scoreboard(Turtle):
         self.speed("fastest")
         self.color(TEXT_COLOR)
         self.goto(x_coord, y_coord)
-        self.update_score()
+        self.update()
         self.hideturtle()
 
-    def update_score(self):
+    def update(self):
         self.write(arg=f"{self.score}", align=ALIGNMENT, font=FONT)
 
-    def score_count(self):
+    def plus_count(self):
         self.score += 1
         self.clear()
-        self.update_score()
+        self.update()
